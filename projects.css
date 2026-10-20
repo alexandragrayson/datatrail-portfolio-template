@@ -1,0 +1,273 @@
+/* ---------- Projects box ---------- */
+#project-cards {
+    flex: 5;
+    min-width: 0;
+    margin-left: 2rem;           /* lines up with the Teaching and Publications text */
+    position: relative;
+    isolation: isolate;
+    container-type: inline-size;
+}
+
+/* ---------- Card grid ---------- */
+/* Narrow box: one card per row */
+.card-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+/* Medium box: two per row, alternating wide/narrow then narrow/wide */
+@container (min-width: 620px) {
+    .card-list {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .card {
+        grid-column: span 2;
+    }
+
+    .card:nth-child(4n + 1),
+    .card:nth-child(4n + 4) {
+        grid-column: span 3;
+    }
+}
+
+@container (620px <= width < 870px) {
+    .card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Wide box: three per row, wide card left in row 1, right in row 2 */
+@container (min-width: 870px) {
+    .card-list {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .card:nth-child(n) {
+        grid-column: span 2;
+    }
+
+    .card:nth-child(6n + 1),
+    .card:nth-child(6n + 6) {
+        grid-column: span 3;
+    }
+    .card:nth-last-child(4):nth-child(3n + 1),
+    .card:last-child:nth-child(3n + 4) {
+        grid-column: span 4;
+    }
+
+    .card:nth-last-child(3):nth-child(3n + 2),
+    .card:nth-last-child(2):nth-child(3n + 3) {
+        grid-column: span 3;
+    }
+
+    .card:nth-last-child(2):nth-child(3n + 1) {
+        grid-column: span 3;
+    }
+
+    .card:last-child:nth-child(3n + 2) {
+        grid-column: span 4;
+    }
+}
+
+.card {
+    height: 300px;
+    cursor: pointer;
+}
+
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 3%;
+    background: #fff;
+}
+
+.dark .card-content {
+    background: #79f6f4;
+    color: #f5f5f7;
+}
+
+/* ---------- Image ---------- */
+.card-content .card-image-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 420px;
+    overflow: hidden;
+    width: max(700px, 100%);
+    margin-left: calc(max(700px, 100%) * -0.5);
+}
+
+.card-image-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent 45%);
+    pointer-events: none;
+}
+
+.card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- Title ---------- */
+.title-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    max-width: 200px;
+    color: #fff;
+}
+
+.open .title-container {
+    top: 30px;
+    left: 30px;
+}
+
+.h6 {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+}
+
+/* ".title-container" in front makes this win over .projects h2 and .sections h2 in styles.css */
+.title-container .h3 {
+    width: auto;
+    margin: 4px 0 0;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: inherit;
+}
+
+/* ---------- Article text (only in the open card) ---------- */
+.content-container {
+    padding: 444px 30px 30px;
+}
+
+.content-container.hidden {
+    display: none;
+}
+
+.content-container p {
+    margin: 0 0 1em;
+    line-height: 1.5;
+}
+
+.content-container p.big {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+/* ---------- Open card ---------- */
+.card-content-container.open {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px;
+    pointer-events: none;
+}
+
+.card-content-container.open .card-content {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    max-height: 100%;
+    overflow-y: auto;
+    pointer-events: auto;
+    cursor: default;
+}
+
+/* ---------- Overlay ---------- */
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    border-radius: 20px;
+    background: rgba(254, 254, 254, 0.615);
+}
+
+/* ---------- Mobile: simple stacked list ---------- */
+@media (max-width: 800px) {
+
+    :has(> #project-cards) {
+        flex-direction: column;
+    }
+
+    #project-cards {
+        flex: none;
+        width: 100%;
+        margin-left: 0;
+        container-type: normal;
+    }
+
+    .card-list {
+        gap: 16px;
+    }
+
+    .card {
+        height: 220px;
+    }
+
+    .card-content .card-image-container {
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin-left: 0;
+    }
+
+    .title-container {
+        top: 16px;
+        left: 16px;
+        max-width: calc(100% - 32px);
+    }
+
+    .title-container .h3 {
+        font-size: 22px;
+    }
+
+    /* ---------- Open card on mobile ---------- */
+    .card-content-container.open {
+        position: fixed; 
+        padding: 56px 12px 12px; 
+    }
+
+    .card-content-container.open .card-content {
+        overscroll-behavior: contain;
+    }
+
+    .open .card-content .card-image-container {
+        height: 240px;
+    }
+
+    .open .title-container {
+        top: 20px;
+        left: 20px;
+    }
+
+    .content-container {
+        padding: 260px 20px 24px; 
+    }
+
+    .overlay {
+        position: fixed;
+        border-radius: 0;
+    }
+}

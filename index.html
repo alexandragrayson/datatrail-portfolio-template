@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTrail Student Name</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="newslist.css">
+
+</head>
+<body>
+    <! -- NAVBAR>
+    <nav>
+        <div class="left">
+            <a></a>
+        </div>
+
+        <div class="right">
+            <div class="links">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                    <span>Read my Blog</span>
+                    <i class="fa-solid fa-rss"></i>
+                </a>
+                <a href="#coursework">
+                    <span>My Training</span>    
+                </a>
+
+                <a href="#projects">
+                    <span>Projects</span>    
+                </a>
+            
+                <a href="#experience">            
+                    <span>Experience</span>    
+                </a>
+
+                <a href="documents/Sample CV CiTS.docx" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span>CV</span>    
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main>
+    <! -- Section 1: About>
+        <section class = "about-me">
+            <div class="headshot">
+                <img src="images/my_headshot.jpeg" alt="My headshot"> 
+                <figcaption>
+                    <h2>DataTrail Student Name</h2>
+                    <p> Data Science Student </p>
+                    <div class="links">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" style="font-size: 35px;"> </i>
+                        </a>
+
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-square-linkedin"style="font-size: 38px;"></i>
+                        </a>
+
+                    </div>
+                    
+                    <hr style="border: 3px; height: 2px; background-color: #81c9ce; width: 100%;">
+                    
+                    <div class="contact">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>name[at]school.edu</span>
+                    </div>
+                    
+                    <div class="contact">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>name[at]codeintheschools.org </span>
+                    </div>
+
+                    <div class="contact">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Baltimore, MD</span></a>
+                    </div>
+                </figcaption>
+            </div>    
+            <div class="text">
+                <h2>DataTrail Student Name</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam officiis qui sint ipsa illum quasi officia, at veritatis dolorem est eveniet provident magnam ex soluta sapiente maiores consectetur. Aut, facere.                </p>
+                <h3>News + Updates</h3>
+                <div id="news_box"></div>
+            </div>
+        </section>
+
+
+
+
+    <! -- Section 2: Classes and Certifications>
+        <div class = "sections">
+            <section id="coursework" class="coursework">
+                <h2>Relevant Coursework</h2>
+                <div class="text">
+                    I have taken Computer Science X
+                    <a href="https://example.com" target="_blank" rel="noopener noreferrer">Check out the course website here</a>. <br>
+                    I have taken Math B
+                    <a href="https://example.com" target="_blank" rel="noopener noreferrer">You can read more about the course here</a>. <br>
+                    I have taken Math C  <br>
+                    I am currently finishing my Google Data Analytics Certification.  <br>
+                    I have taken Y Code in the Schools course  <br>
+                    I have taken Z Code in the Schools course  <br>
+                </div>
+            </section>
+        </div>
+
+    <! -- Section 3: Projects>
+    <!-- Section 3: Projects -->
+    <div id="projects_box"></div>
+
+    <! -- Section 4: Experience>
+        <div class = "sections">
+            <section id="experience" class="experience">
+                <h2>Experience</h2>
+                <div class="text">
+                    <p>I love to stay involved in my school and community! Here are a few key experiences I'm particlarly proud of: </p>
+                    <p>Experience #1 </p>
+                    <p>Experience #2 </p>
+                    <p>Experience #3 </p>
+                    <p>Experience #4 </p>
+                    <p>Experience #5 </p>
+                    <p>And many more...check out <a href="documents/Sample CV CiTS.docx" target="_blank" rel="noopener noreferrer"> my CV</a> while you're here </p>        
+                </div>  
+            </section>
+        </div>
+    
+
+
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="module" src="projects.js"></script>
+    <script type="module" src="newslist.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#projects_box").load("./projects.html", function () {
+                window.initProjectCards();
+            });
+            $("#news_box").load("./news.html", function () {
+                window.initNewsList();
+            });
+        });
+    </script>
+</body>
+</html>
